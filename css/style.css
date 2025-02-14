@@ -1,0 +1,63 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+}
+
+main{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(134, 234, 252);
+}
+
+.contenedor{
+    height: 60vh;
+    width: 55vh;
+    background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+}
+
+.contenedor .partesuperior{
+    height: 10%;
+    width: 100%;
+    background-color: gray;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor .partesuperior .printer{
+    height: 80%;
+    width: 90%;
+    background-color: cadetblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor .partesuperior .printer .result{
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    background-color: black;
+    outline: none;
+}
+.contenedor .partedeabajo{
+    height: 90%;
+    width: 100%;
+    background-color: brown;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+
+}
