@@ -11,11 +11,11 @@
         <div class="contenedor">
             <div class="partesuperior">
                 <div class="printer">
-                    <input class="result" type="text" value="" readonly>
+                    <input class="result" type="text" value="0" readonly>
                 </div>
             </div>
             <div class="partedeabajo">
-                <button value="AC" class="btn grey">AC</button>
+                <button value="AC" class="btn ac grey">AC</button>
                 <button value="DEL" class="btn grey">DEL</button>
                 <button value="%" class="btn grey">%</button>
                 <button value="/" class="btn special orange">/</button>
@@ -33,41 +33,58 @@
                 <button value="+" class="btn special orange">+</button>
                 <button value="0" id="cero" class="btn black">0</button>
                 <button value="." class="btn black">.</button>
-                <button id="equal" class="btn orange">=</button>
+                <button id="equal" value="equal" class="btn equal orange">=</button>
             </div>
         </div>
     </main>
 </body>
 <script>
-
+    let operadores = ['*', '+', '-', '/'];
     let botones = document.querySelectorAll(".btn");
     let printer = document.querySelector('.result');
     let calculo = '', calculoconcat = '', cont=0, ultimocaracter='';
-    let operadores = ['*', '+', '-', '/'];
     let specialbuttons = document.querySelectorAll('.special');
     let todoslosbotones = [...botones];
+    
      todoslosbotones.forEach(boton=>{
+
         boton.addEventListener('click', ()=>{
+           
             if(boton.classList.contains('black')){
+
                 cont++;
                 calculoconcat+= boton.value;
-                console.log(calculoconcat);
+                printer.value=calculoconcat;
 
             }
             if(boton.classList.contains('special') && cont>0 ){
+
                 ultimocaracter = calculoconcat.slice(-1);
+
                 if(operadores.includes(ultimocaracter)){
-                    console.log('vamosss');
+
+                    console.log('xd');
                 }else{
-                    calculoconcat+= boton.value;
-                    console.log(calculoconcat);
-                }
+
+                   calculoconcat+= boton.value;
+                   printer.value+=boton.value;
+
                 
-        }
+                 }        
+                }
+
+                if (boton.classList.contains('equal')){
+                    calculoconcat=String(eval(calculoconcat));
+                    printer.value=calculoconcat;
+                }
+
+                if(boton.classList.contains('ac')){
+                    calculoconcat='';
+                    printer.value=0;
+                }
         })        
         
     })
-    //cuando son varios btn usas foreach
     
 
 </script>
