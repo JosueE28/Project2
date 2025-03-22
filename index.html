@@ -17,7 +17,7 @@
             <div class="partedeabajo">
                 <button value="AC" class="btn ac grey">AC</button>
                 <button value="DEL" class="btn grey">DEL</button>
-                <button value="%" class="btn grey">%</button>
+                <button value="%" class="btn % grey">%</button>
                 <button value="/" class="btn special orange">/</button>
                 <button value="7" class="btn black">7</button>
                 <button value="8" class="btn black">8</button>
@@ -39,10 +39,11 @@
     </main>
 </body> 
 <script>
-    let operadores = ['*', '+', '-', '/'];
+    let operadores = ['*', '+', '-', '/', '%'];
     let botones = document.querySelectorAll(".btn");
     let printer = document.querySelector('.result');
-    let calculo = '', calculoconcat = '', cont=0, ultimocaracter='';
+    let match = '';
+    let calculo = '', calculoconcat = '', cont=0, ultimocaracter='', ultimocaracterp='', regex=/(\d+)\s*([+/-])\s*(\d+)%/;
     let specialbuttons = document.querySelectorAll('.special');
     let todoslosbotones = [...botones];
     
@@ -81,6 +82,30 @@
                 if(boton.classList.contains('ac')){
                     calculoconcat='';
                     printer.value=0;
+                }
+
+                if(boton.classList.contains('%')){
+                    ultimocaracterp = calculoconcat.slice(-1);
+                    
+                    if(operadores.includes(ultimocaracterp)){
+                        console.log('jajaj po')
+                    }else{
+                        calculoconcat+='%';
+                        printer.value+='%';
+                    
+                        match = calculoconcat.match(regex);
+                        if(match){
+                        console.log('vas bien pa'+match[0]);
+                        console.log('vas bien pa'+match[1]);
+                        console.log('vas bien pa'+match[2]);
+                        console.log('vas bien pa'+match[3]);
+
+                        
+                            }else{
+                                console.log('no');
+                            }
+                    }
+                   
                 }
         })        
         
