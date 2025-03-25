@@ -39,11 +39,13 @@
     </main>
 </body> 
 <script>
-    let operadores = ['*', '+', '-', '/', '%'];
+    let operadores = ['*', '+', '-', '/'];
+    let operador = ['%'];
+
     let botones = document.querySelectorAll(".btn");
     let printer = document.querySelector('.result');
     let match = '';
-    let calculo = '', calculoconcat = '', cont=0, ultimocaracter='', ultimocaracterp='', regex=/(\d+)\s*([+/-])\s*(\d+)%/;
+    let calculo = '', calculoconcat = '', cont=0, operationtype='', ultimocaracter='', ultimocaracterp='', regex=/(\d+)\s*([+\-\/\*])\s*(\d+)%|(\d+)%/;
     let specialbuttons = document.querySelectorAll('.special');
     let todoslosbotones = [...botones];
     
@@ -75,6 +77,35 @@
                 }
 
                 if (boton.classList.contains('equal')){
+
+                    if(match[2]=='+' || match[2]=='-'){
+                        operationtype='sumayresta';
+                    }
+                    else if(match[2]=='/'){
+                        operationtype='division';
+                    }
+                    else if(match[2]=='*'){
+                        operationtype='multiplicacion';
+                    }
+                    else if(match[4]){
+                        operationtype='normal';
+                    }
+
+                    switch(operationtype){
+                        case 'sumayresta': 
+                            console.log('sumayresta')
+                        break;
+                        case 'division': 
+                            console.log('division')
+                        break;
+                        case 'multiplicacion': 
+                            console.log('multiplicacion')
+                        break;
+                        case 'normal': 
+                        console.log(calculoconcat)
+                        break;
+                        
+                    }
                     calculoconcat=String(eval(calculoconcat));
                     printer.value=calculoconcat;
                 }
@@ -87,7 +118,7 @@
                 if(boton.classList.contains('%')){
                     ultimocaracterp = calculoconcat.slice(-1);
                     
-                    if(operadores.includes(ultimocaracterp)){
+                    if(operador.includes(ultimocaracterp)){
                         console.log('jajaj po')
                     }else{
                         calculoconcat+='%';
@@ -99,6 +130,8 @@
                         console.log('vas bien pa'+match[1]);
                         console.log('vas bien pa'+match[2]);
                         console.log('vas bien pa'+match[3]);
+                        console.log('vas bien pa'+match[4]);
+
 
                         
                             }else{
