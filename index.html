@@ -16,7 +16,7 @@
             </div>
             <div class="partedeabajo">
                 <button value="AC" class="btn ac grey">AC</button>
-                <button value="DEL" class="btn grey">DEL</button>
+                <button value="DEL" class="btn del grey">DEL</button>
                 <button value="%" class="btn % grey">%</button>
                 <button value="/" class="btn special orange">/</button>
                 <button value="7" class="btn black">7</button>
@@ -32,118 +32,12 @@
                 <button value="3" class="btn black">3</button>
                 <button value="+" class="btn special orange">+</button>
                 <button value="0" id="cero" class="btn black">0</button>
-                <button value="." class="btn black">.</button>
+                <button value="." class="btn dab ">.</button>
                 <button id="equal" value="equal" class="btn equal orange">=</button>
             </div>
         </div>
     </main>
 </body> 
-<script>
-    let operadores = ['*', '+', '-', '/'];
-    let operador = ['%'];
-
-    let botones = document.querySelectorAll(".btn");
-    let printer = document.querySelector('.result');
-    let match = '';
-    let calculo = '', calculoconcat = '', cont=0, operationtype='', ultimocaracter='', ultimocaracterp='', regex=/(\d+)\s*([+\-\/\*])\s*(\d+)%|(\d+)%/;
-    let specialbuttons = document.querySelectorAll('.special');
-    let todoslosbotones = [...botones];
-    
-     todoslosbotones.forEach(boton=>{
-
-        boton.addEventListener('click', ()=>{
-           
-            if(boton.classList.contains('black')){
-
-                cont++;
-                calculoconcat+= boton.value;
-                printer.value=calculoconcat;
-
-            }
-            if(boton.classList.contains('special') && cont>0 ){
-
-                ultimocaracter = calculoconcat.slice(-1);
-
-                if(operadores.includes(ultimocaracter)){
-
-                    console.log('xd');
-                }else{
-
-                   calculoconcat+= boton.value;
-                   printer.value+=boton.value;
-
-                
-                 }        
-                }
-
-                if (boton.classList.contains('equal')){
-
-                    if(match[2]=='+' || match[2]=='-'){
-                        operationtype='sumayresta';
-                    }
-                    else if(match[2]=='/'){
-                        operationtype='division';
-                    }
-                    else if(match[2]=='*'){
-                        operationtype='multiplicacion';
-                    }
-                    else if(match[4]){
-                        operationtype='normal';
-                    }
-
-                    switch(operationtype){
-                        case 'sumayresta': 
-                            console.log('sumayresta')
-                        break;
-                        case 'division': 
-                            console.log('division')
-                        break;
-                        case 'multiplicacion': 
-                            console.log('multiplicacion')
-                        break;
-                        case 'normal': 
-                        console.log(calculoconcat)
-                        break;
-                        
-                    }
-                    calculoconcat=String(eval(calculoconcat));
-                    printer.value=calculoconcat;
-                }
-
-                if(boton.classList.contains('ac')){
-                    calculoconcat='';
-                    printer.value=0;
-                }
-
-                if(boton.classList.contains('%')){
-                    ultimocaracterp = calculoconcat.slice(-1);
-                    
-                    if(operador.includes(ultimocaracterp)){
-                        console.log('jajaj po')
-                    }else{
-                        calculoconcat+='%';
-                        printer.value+='%';
-                    
-                        match = calculoconcat.match(regex);
-                        if(match){
-                        console.log('vas bien pa'+match[0]);
-                        console.log('vas bien pa'+match[1]);
-                        console.log('vas bien pa'+match[2]);
-                        console.log('vas bien pa'+match[3]);
-                        console.log('vas bien pa'+match[4]);
-
-
-                        
-                            }else{
-                                console.log('no');
-                            }
-                    }
-                   
-                }
-        })        
-        
-    })
-    
-
+<script src="js/script.js">
 </script>
 </html>
